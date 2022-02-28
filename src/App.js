@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import {useState,useEffect} from "react"
 import './App.css';
+import List from "./Components/List/List";
+import Filter from "./Components/Filter/Filter";
 
+// {text:"",comp_state:"uncompleted"} //örnek
 function App() {
+  const [all,setAll] = useState([])
+  const [filtered,setFiltered] = useState([])
+  const [status,setStatus] = useState("uncomplete")
+
+  useEffect(()=>{
+    console.log(status)
+    filterHandler()
+  },[status,all])
+
+  const filterHandler = () =>{
+    switch (status) {
+      case "complete": 
+        setFiltered(all.filter((item)=> item.comp_state===true))
+        break;
+      
+      case "uncomplete":
+        setFiltered(all.filter((item)=> item.comp_state===false))
+        break
+    
+      default: // all
+        setFiltered(all)
+        break;
+    }
+  }
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <List all={all} setAll={setAll} filtered={filtered} />
+      <Filter setStatus={setStatus} filtered={filtered} all={all} setAll={setAll} />
     </div>
   );
 }

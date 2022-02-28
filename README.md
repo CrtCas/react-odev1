@@ -1,3 +1,12 @@
+# To do list project
+This project is from patika.dev's orta seviye frontend eğitimi
+Done accordingto the html and css given initially
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
